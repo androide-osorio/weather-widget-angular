@@ -1,6 +1,11 @@
 /**
+ * ===========================================================
  * Weather Widget Frontend files: ASSET PIPELINE
+ * ===========================================================
+ * @author Andres Osorio <androideosorio@me.com>
+ * @license MIT
  */
+
 /**
  * require all necessary gulp plugins and additional helper libraries
  */
@@ -69,6 +74,7 @@ const wiredepConfig = {
  * compile SASS sources to a minified and concatenated CSS file.
  * export additional sourcemaps for development
  */
+help.task('styles', 'compile SASS files into final CSS files', helpConfig);
 gulp.task('styles', () => {
   return gulp.src(paths.src.styles)
     .pipe($.sass())
@@ -86,10 +92,12 @@ gulp.task('styles', () => {
  *
  * Additionally, minify the HTML output
  */
+help.task('inject', 'compile dependencies and application scripts, and inject them into the final index file', helpConfig);
 gulp.task('inject', () => {
   return gulp.src(paths.src.index)
   .pipe(wiredep(wiredepConfig))
   .pipe($.useref())
+  .pipe($.if('*.js', $.ngAnnotate()))
   .pipe($.if('*.js', $.uglify()))
   .pipe($.if('*.css', $.postcss(preprocessors)))
   .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
@@ -122,6 +130,7 @@ gulp.task('assets:videos', () => {
 /**
  * clean up the build destination directory by deleting it
  */
+help.task('clean:dist', 'Clean destination (build) directory', helpConfig);
 gulp.task('clean:dist', () => {
   return del(paths.dist.root);
 });
@@ -157,6 +166,7 @@ gulp.task('watch', () => {
 /**
  * build the project into their final HTML/CSS/ JS forms
  */
+help.task('build', 'Default task for building production assets', helpConfig);
 gulp.task('build', (done) => {
   runSequence('clean:dist', [
     'styles',
@@ -172,4 +182,5 @@ gulp.task('build', (done) => {
  * with live reload enabled and add watchers to the source files
  * to reload the development server
  */
+help.task('default', 'Default for setting up a local development environment', helpConfig);
 gulp.task('default', (done) => runSequence('build', ['connect', 'watch'], done));

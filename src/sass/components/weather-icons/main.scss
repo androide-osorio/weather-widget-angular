@@ -14,7 +14,7 @@ $weather-icon-2h: $weather-icon-2w;
 /* Generated data URIs used for preview purposes only */
 /* Be sure that you replace data URIs with generated images */
 .weather-icon {
-  background: url(/images/weather-icons.png) no-repeat;
+  background: url(../images/weather-icons.png) no-repeat;
 	background-size: percentage($weather-icons-img-w/$weather-icon-w)
 									 percentage($weather-icons-img-h/$weather-icon-h);
   max-width: 100%;
@@ -22,7 +22,7 @@ $weather-icon-2h: $weather-icon-2w;
 	height: calc-rem($weather-icon-h);
 
 	&.big {
-		background: url(/images/weather-icons@2x.png) no-repeat;
+		background: url(../images/weather-icons@2x.png) no-repeat;
 		background-size: 1930% 100%;
 
 		width: calc-rem($weather-icon-2w);
@@ -115,7 +115,7 @@ $weather-icon-2h: $weather-icon-2w;
 	(-webkit-min-device-pixel-ratio: 1.5),
 	(min-device-pixel-ratio: 1.5),
 	(min-resolution: 1.5dppx) {
-		background: url(/images/weather-icons@2x.png) no-repeat;
+		background: url(../images/weather-icons@2x.png) no-repeat;
 		background-size: 1930% 100%;
 	}
 }

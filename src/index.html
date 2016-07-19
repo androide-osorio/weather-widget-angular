@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="WeatherApp" lang="en">
   <head>
     <meta charset="utf-8">
     <title>Weather widget</title>
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="styles/app.min.css" media="screen" charset="utf-8">
   </head>
 
-  <body ng-app="WeatherApp">
+  <body ng-controller="ApplicationController">
     <div class="fullscreen-bg">
       <video loop autoplay poster="images/clouds.png" class="fullscreen-bg__video">
         <source src="videos/clouds.webm" type="video/webm"></source>
@@ -31,7 +31,7 @@
           Video not supported
       </video>
     </div>
-    <div class="loading-screen" ng-cloak="">
+    <div class="loading-screen" ng-cloak="" ng-show="loading">
       <h1>Getting Weather Forecast, please wait...</h1>
       <div class="sk-cube-grid">
         <div class="sk-cube sk-cube1"></div>
@@ -46,42 +46,42 @@
       </div>
     </div>
     <main class="page-content">
-      <div class="weather-widget" ng-controller="WeatherWidgetController as WeatherWidgetCtrl">
-        <div class="weather-widget-box today">
+      <div class="weather-widget" ng-controller="WeatherWidgetController as WeatherWidgetCtrl" ng-cloak>
+        <div class="weather-widget-box today" ng-cloak>
           <header class="weather-widget-box-header">
             <h5>
               {{ forecast.location.city }}, {{ forecast.location.country }}
             </h5>
-            <!-- UNCOMMENT THIS TO ENABLE THE PLACE SEARCH FUNCTIONALITY -->
+            <!-- NOTE: UNCOMMENT THIS TO ENABLE THE PLACE SEARCH FUNCTIONALITY -->
             <!--<button class="open-search-button right"
              type="button" ng-click="WeatherWidgetCtrl.togglePopup()">
               &nbsp;
             </button>-->
           </header>
           <hgroup class="temperatures">
-            <h2 class="temperature-item avg-temperature">
+            <h2 class="temperature-item avg-temperature" ng-cloak>
               {{ forecast.today.condition.temp}}º
             </h2>
             <h5 class="temperature-item">
-              Hi <span class="hightest-temperature">
+              Hi <span class="hightest-temperature" ng-cloak>
                 {{ forecast.today.condition.high}}º
               </span>
             </h5>
             <h5 class="temperature-item">
-              Lo <span class="lowest-temperature">
+              Lo <span class="lowest-temperature" ng-cloak>
                 {{ forecast.today.condition.low }}º
               </span>
             </h5>
           </hgroup>
 
           <div class="weather-forecast-icon
-            weather-icon big {{ forecast.today.condition.text | slugify }}"></div>
+            weather-icon big {{ forecast.today.condition.text | slugify }}" ng-cloak></div>
 
           <section class="today-info">
-            <h3 class="weather-forecast-description">
+            <h3 class="weather-forecast-description" ng-cloak>
               {{forecast.today.condition.text}}
             </h3>
-            <hgroup class="weather-forecast-metrics">
+            <hgroup class="weather-forecast-metrics" ng-cloak>
               <h4 class="weather-forecast-metric">
                 Humidity: <span class="humidity">
                   {{forecast.today.atmosphere.humidity}}%
@@ -94,12 +94,12 @@
                 </span>
               </h4>
             </hgroup>
-            <h5 class="forecast-day">{{forecast.date | amDateFormat: 'dddd' }}</h5>
+            <h5 class="forecast-day" ng-cloak>{{forecast.date | amDateFormat: 'dddd' }}</h5>
           </section>
         </div>
 
         <div class="container">
-          <div class="weather-widget-box" ng-repeat="dayForecast in forecast.week | filter | limitTo:2">
+          <div class="weather-widget-box" ng-repeat="dayForecast in forecast.week | filter | limitTo:2" ng-cloak>
             <div class="weather-forecast">
               <div class="weather-forecast-icon weather-icon {{ dayForecast.text | slugify }}"></div>
               <h5 class="forecast-day">{{dayForecast.date | amDateFormat: 'dddd' }}</h5>

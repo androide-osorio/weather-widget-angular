@@ -34,7 +34,7 @@
   }
 
   .weather-forecast {
-    background: url(/images/today-forecast-box.png) no-repeat;
+    background: url(../images/today-forecast-box.png) no-repeat;
     background-size: 100% 100%;
     color: white;
     padding: 0.5rem 0.4rem;
@@ -86,7 +86,7 @@
 
   /*------------------------------------*/
   &.today {
-    background: url(/images/today-forecast-box.png) no-repeat;
+    background: url(../images/today-forecast-box.png) no-repeat;
     background-size: 100% 100%;
     background-position: center center;
     min-width: 18.625rem;
@@ -124,7 +124,7 @@
 
     .open-search-button {
       border: none;
-      background: url(/images/open-search-button.png) no-repeat;
+      background: url(../images/open-search-button.png) no-repeat;
       padding: 0;
       width: 30px;
       height: 30px;
