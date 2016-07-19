@@ -1,0 +1,22 @@
+.places-list {
+  list-style: none;
+  padding: 0;
+
+  .place-item {
+    padding: 1rem;
+    color: #0096d6;
+    background: white;
+    font-size: 1.6rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    cursor: pointer;
+
+    a {
+      display: block;
+    }
+
+    h4 {
+      margin: 0;
+      line-height: 1em;
+    }
+  }
+}

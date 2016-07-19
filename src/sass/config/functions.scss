@@ -1,0 +1,30 @@
+//-----------------------------------------------
+// Utility functions
+//-----------------------------------------------
+// this file contains utility functions used
+// throughout the entire SASS project
+// @author Andrés Osorio
+
+// convert a pixel value into an em value
+// based on the context font-size
+@function calc-em($target-px, $context: 16px) {
+  @return #{($target-px / $context)}em;
+}
+
+// convert a pixel value into a rem value
+// based on the root font size
+@function calc-rem($size, $context: 16px) {
+  $remSize: $size / $context;
+  @return #{$remSize}rem;
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

@@ -1,0 +1,17 @@
+
+html {
+  font-size: 14px;
+}
+
+body {
+  font: normal normal 100%/1.5em Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  @media (min--moz-device-pixel-ratio: 1.5),
+  (-webkit-min-device-pixel-ratio: 1.5),
+  (min-device-pixel-ratio: 1.5),
+  (min-resolution: 1.5dppx) {
+    background-image: url(../images/bg@2x.png);
+  }
+}

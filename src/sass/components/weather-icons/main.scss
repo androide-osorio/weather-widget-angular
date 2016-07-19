@@ -1,0 +1,121 @@
+@import '../../config/functions';
+
+$weather-icons-img-w: 1930px;
+$weather-icons-img-h: 87px;
+$weather-icons-img-w-retina: $weather-icons-img-w * 2;
+$weather-icons-img-h-retina: $weather-icons-img-h * 2;
+
+$weather-icon-w: 98px;
+$weather-icon-h: $weather-icon-w;
+$weather-icon-2w: 128px;
+$weather-icon-2h: $weather-icon-2w;
+
+/* --------------------------------------------------------------------------- */
+/* Generated data URIs used for preview purposes only */
+/* Be sure that you replace data URIs with generated images */
+.weather-icon {
+  background: url(/images/weather-icons.png) no-repeat;
+	background-size: percentage($weather-icons-img-w/$weather-icon-w)
+									 percentage($weather-icons-img-h/$weather-icon-h);
+  max-width: 100%;
+	width: calc-rem($weather-icon-w);
+	height: calc-rem($weather-icon-h);
+
+	&.big {
+		background: url(/images/weather-icons@2x.png) no-repeat;
+		background-size: 1930% 100%;
+
+		width: calc-rem($weather-icon-2w);
+		height: calc-rem($weather-icon-2h);
+	}
+
+	&.breezy {
+		background-position: 0 0;
+	}
+
+	&.clear-night {
+		background-position: percentage(115/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.cloudy-night {
+		background-position: percentage(230/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.cloudy {
+		background-position: percentage(341/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.lunar-eclipse {
+		background-position: percentage(460/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.mostly-cloudy {
+		background-position: percentage(576/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.mostly-sunny {
+		background-position: percentage(679/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.partly-cloudy {
+		background-position: percentage(796/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.rain {
+		background-position: percentage(915/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.scattered-showers {
+		background-position: percentage(1037/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.scattered-thunderstorms {
+		background-position: percentage(1148/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.showers {
+		background-position: percentage(1269/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.sleet {
+		background-position: percentage(1384/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.snow {
+		background-position: percentage(1489/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.solar-eclipse {
+		background-position: percentage(1599/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.sunny {
+		background-position: percentage(1703/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.thunderstorms {
+		background-position: percentage(1830/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	&.tornado {
+		background-position: percentage(1930/strip-unit($weather-icons-img-w)) 0;
+	}
+
+	@media only screen and (min-width : 769px) {
+
+		&.big {
+			background-size: 1930% 100%;
+
+			width: $weather-icon-2w !important;
+	    height: $weather-icon-2h !important;
+		}
+	}
+
+	@media (min--moz-device-pixel-ratio: 1.5),
+	(-webkit-min-device-pixel-ratio: 1.5),
+	(min-device-pixel-ratio: 1.5),
+	(min-resolution: 1.5dppx) {
+		background: url(/images/weather-icons@2x.png) no-repeat;
+		background-size: 1930% 100%;
+	}
+}

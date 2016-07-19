@@ -1,0 +1,21 @@
+// Variables
+//-------------------------------------------------------------
+$colors: (
+  darkblue: #014466,
+  cyan: #5dffff
+);
+
+// Typography Properties
+$base-font-size-mobile: 14px;
+$base-font-size-desktop: 16px;
+
+$base-font-family: Helvetica, sans-serif;
+$headings-font-family: 'Exo 2', Helvetica, Arial, sans-serif;
+
+// Media queries (mobile-first)
+$breakpoints: (
+  xs: 600px,
+  sm: 769px,
+  md: 992px,
+  lg: 1199px
+);

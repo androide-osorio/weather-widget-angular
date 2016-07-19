@@ -1,0 +1,23 @@
+// ==================================================================
+// Application Stylesheet
+// ==================================================================
+
+// configuration
+@import "config/functions";
+@import "config/mixins";
+@import "config/variables";
+
+// global styles
+@import "global/normalize";
+@import "global/elements";
+
+// layout
+@import "layout/utilities";
+@import "layout/main";
+
+// components
+@import "components/weather-icons/main";
+@import "components/weather-widget/main";
+@import "components/weather-widget/box";
+@import "components/places-list/main";
+@import "components/loading/main";
