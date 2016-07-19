@@ -1,5 +1,6 @@
 /**
  * Application services
+ * @author Andres Osorio <androideosorio@me.com>
  */
 
 var App = angular.module('WeatherApp');
@@ -114,7 +115,7 @@ App.factory('YQL', function(API_ENDPOINTS, GeoPosition) {
  * - a specific place by city and country
  * - a specific place by zipcode
  */
-App.factory('PlaceFinder', function(API_ENDPOINTS, $http, $q, GeoPosition) {
+App.factory('PlaceFinder', function(API_ENDPOINTS, $http, GeoPosition) {
   // build the API url
   var apiUrl = API_ENDPOINTS.url + API_ENDPOINTS.query;
 
@@ -174,7 +175,7 @@ App.factory('PlaceFinder', function(API_ENDPOINTS, $http, $q, GeoPosition) {
   };
 });
 
-App.factory('Weather', function($http, $q, API_ENDPOINTS, YQL) {
+App.factory('Weather', function($http, API_ENDPOINTS, YQL) {
 
   var forecastUrl = API_ENDPOINTS.url + API_ENDPOINTS.query;
 
@@ -256,7 +257,7 @@ App.factory('Weather', function($http, $q, API_ENDPOINTS, YQL) {
   return {
     forecastFor: forecastFor,
     forecastForLocation: forecastForLocation
-  }
+  };
 });
 
 //---------------------------------------------------------------
