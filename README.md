@@ -28,6 +28,8 @@ Frameworks and APIs used
 * [freegeoip.net](http://freegeoip.net/?q=181.55.146.41) for IP-Based geolocation.
 * [SASS](http://sass-lang.com/) for CSS preprocessing.
 * [gulp](https://gulpjs.com/) as the asset pipeline.
+
+Setting up the project
 ---
 Clone this repository by Running:
 ```bash
