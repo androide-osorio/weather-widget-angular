@@ -3,12 +3,24 @@ html {
   font-size: 14px;
   $breakpoint-md: map-get($breakpoints, md);
 
+  @media all and (max-width:159px) {
+    font-size: 3px;
+  }
+
+  @media all and (min-width:160px) and (max-width:319px) {
+    font-size: 7px;
+  }
+
   @media all and (min-width: $breakpoint-md) and (max-width: 1099px) {
     font-size: 20px;
   }
 
   @media all and (min-width: 1100px) {
     font-size: 24px;
+  }
+
+  @media all and (min-width: 1800px) {
+    font-size: 27px;
   }
 }
 
