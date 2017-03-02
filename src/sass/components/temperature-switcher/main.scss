@@ -1,0 +1,18 @@
+.temperature-units-switcher {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+
+  display: flex;
+
+  a {
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+    padding: 2px 10px;
+
+    &.active {
+      background-color: map-get($colors, darkblue);
+    }
+  }
+}
