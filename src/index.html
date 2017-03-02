@@ -123,6 +123,8 @@
           </div>
         </div>
 
+        <!-- TEMPERATURE SWITCHER -->
+        <!-- NOTE: COMMENT THIS TO HIDE THE TEMPERATURE SWITCHER -->
         <nav class="temperature-units-switcher">
           <a href=""
           ng-click="WeatherWidgetCtrl.toggleUnits('c')"
@@ -131,6 +133,8 @@
           ng-click="WeatherWidgetCtrl.toggleUnits('f')"
           ng-class="{ active: WeatherWidgetCtrl.displayUnit === 'f' }">F</a>
         </nav>
+        <!-- END :: Temperature Switcher -->
+
         <!-- search popup -->
         <section class="search-popup" ng-show="WeatherWidgetCtrl.isPopupOpen">
           <header>

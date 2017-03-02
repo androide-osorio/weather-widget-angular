@@ -24,6 +24,8 @@ App.factory('YQL', function(GeoPosition) {
    * @param  {string}        type   a string describing a supported query type
    * @param  {string}        query  a search term to filter the API
    * @param  {Array[string]} fields an array of fields to fetch from the yahoo API
+   * @param {string}         units  the temperature units to fetch from the weather API
+   *
    *
    * @return {string}        a fully formed YQL query
    */
@@ -81,6 +83,7 @@ App.factory('YQL', function(GeoPosition) {
    * on earth. It can accept the same queries as "getPlacesQuery()" function.
    * @param  {string}        query  a search term that will be used to query the Yahoo! API
    * @param  {Array[string]} fields an array of fields to fetch from the Yahoo! API
+   * @param {string} units  the temperature units to fetch from the weather API (defaults to celsius)
    *
    * @return {string}        a fully formed YQL query for getting the weather forecast for a location
    */
@@ -176,6 +179,15 @@ App.factory('PlaceFinder', function(API_ENDPOINTS, $http, GeoPosition) {
   };
 });
 
+/**
+ * Weather Factory
+ * This factory is used to abstract away details of fetching
+ * the weather forecast from Yahoo! weather into a convenient,
+ * promise-based API.
+ *
+ * It also transforms the Yahoo! weather payload into a simplified
+ * structure used by the rest of the application.
+ */
 App.factory('Weather', function($http, API_ENDPOINTS, YQL) {
 
   var forecastUrl = API_ENDPOINTS.url + API_ENDPOINTS.query;
@@ -223,6 +235,7 @@ App.factory('Weather', function($http, API_ENDPOINTS, YQL) {
    * - city, country
    *
    * @param  {string} place the place from where we want the forecast
+   * @param {string} units  the temperature units to fetch from the weather API
    * @return {promise}      a promise that will resolve with the weather forecast
    */
   var forecastFor = function(place, units) {
@@ -242,6 +255,8 @@ App.factory('Weather', function($http, API_ENDPOINTS, YQL) {
    * on earth that can be defined by a latitude or longitude
    *
    * @param  {string} place the place from where we want the forecast (as a latitude-longitude pair)
+   * @param {string} units  the temperature units to fetch from the weather API
+   *
    * @return {promise}      a promise that will resolve with the weather forecast
    */
   var forecastForLocation = function(latitude, longitude, units) {

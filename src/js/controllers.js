@@ -27,8 +27,9 @@ App.controller('ApplicationController', function($scope) {
  */
 App.controller('WeatherWidgetController', function($scope, PlaceFinder, Weather, Geolocation, DEFAULT_LOCATION) {
   var temperatureUnits = ['c', 'f'];
+  
   this.isPopupOen = false;
-  this.displayUnit = 'f';
+  this.displayUnit = 'f';  //unit currently used in display
 
   /**
    * initializer method.
@@ -57,6 +58,10 @@ App.controller('WeatherWidgetController', function($scope, PlaceFinder, Weather,
     this.forecastForDefaultLocation();
   };
 
+  /**
+   * Retrieve the forecast for the App's default location
+   * @return {void}
+   */
   this.forecastForDefaultLocation = function() {
     Weather.forecastFor(DEFAULT_LOCATION, this.displayUnit)
       .then(function(forecast) {
