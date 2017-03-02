@@ -90,7 +90,9 @@
               <h4 class="weather-forecast-metric">
                 Wind Speed:
                 <span class="wind-speed">
-                  {{forecast.today.wind.speed}}km/h
+                  {{forecast.today.wind.speed}}
+                  <span ng-if="WeatherWidgetCtrl.displayUnit === 'c'">km/h</span>
+                  <span ng-if="WeatherWidgetCtrl.displayUnit === 'f'">mph</span>
                 </span>
               </h4>
             </hgroup>
@@ -121,6 +123,15 @@
           </div>
         </div>
 
+        <nav class="tempreature-units-switcher">
+          <a href=""
+          ng-click="WeatherWidgetCtrl.toggleUnits('c')"
+          ng-class="{ active: WeatherWidgetCtrl.displayUnit === 'c' }">C</a>
+          <a href=""
+          ng-click="WeatherWidgetCtrl.toggleUnits('f')"
+          ng-class="{ active: WeatherWidgetCtrl.displayUnit === 'f' }">F</a>
+        </nav>
+        <!-- search popup -->
         <section class="search-popup" ng-show="WeatherWidgetCtrl.isPopupOpen">
           <header>
             <form class="" ng-submit="WeatherWidgetCtrl.findPlace(query)">
@@ -164,8 +175,8 @@
             </hgroup>
           </section>
         </section>
+        <!-- END :: search popup -->
       </div>
-
     </main>
 
     <!-- build:js scripts/vendor.min.js -->

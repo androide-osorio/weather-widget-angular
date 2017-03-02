@@ -8,7 +8,7 @@ var App = angular.module('WeatherApp');
 /**
  * Utility Factory for constructing YQL queries.
  */
-App.factory('YQL', function(API_ENDPOINTS, GeoPosition) {
+App.factory('YQL', function(GeoPosition) {
   /**
    * constructs a YQL query from the specified query type supported
    * by this application, with the specified search term and fields
@@ -27,14 +27,14 @@ App.factory('YQL', function(API_ENDPOINTS, GeoPosition) {
    *
    * @return {string}        a fully formed YQL query
    */
-  var queryFor = function(type, query, fields) {
+  var queryFor = function(type, query, fields, units) {
     if(GeoPosition.validate(query)) {
       query = "(" + query + ")";
     }
 
     switch(type) {
       case 'weather':
-        return getWeatherQuery(query, fields);
+        return getWeatherQuery(query, fields, units);
         break;
       case 'location':
         return getLocationQuery(query, fields);
@@ -84,11 +84,12 @@ App.factory('YQL', function(API_ENDPOINTS, GeoPosition) {
    *
    * @return {string}        a fully formed YQL query for getting the weather forecast for a location
    */
-  var getWeatherQuery = function(query, fields) {
+  var getWeatherQuery = function(query, fields, units) {
     // configure the query to fetch
     // the asked fields or default to
     // the supported (and relevant) ones
     var fields = fields || ['*'];
+    units = units || 'c';
 
     var yql = [
       'select ' + fields.join(','),
@@ -96,7 +97,7 @@ App.factory('YQL', function(API_ENDPOINTS, GeoPosition) {
       'where woeid in (',
         'select woeid from geo.places(1)',
         'where text="' + query + '" limit 1',
-      ') and u="c" limit 1',
+      ') and u="' + units + '" limit 1',
     ].join(' ');
 
     return yql;
@@ -224,8 +225,8 @@ App.factory('Weather', function($http, API_ENDPOINTS, YQL) {
    * @param  {string} place the place from where we want the forecast
    * @return {promise}      a promise that will resolve with the weather forecast
    */
-  var forecastFor = function(place) {
-    var query = YQL.queryFor('weather', place),
+  var forecastFor = function(place, units) {
+    var query = YQL.queryFor('weather', place, ['*'], units),
       params = { params: { q: query, format: 'json' } };
 
     return $http.get(forecastUrl, params)
@@ -243,8 +244,8 @@ App.factory('Weather', function($http, API_ENDPOINTS, YQL) {
    * @param  {string} place the place from where we want the forecast (as a latitude-longitude pair)
    * @return {promise}      a promise that will resolve with the weather forecast
    */
-  var forecastForLocation = function(latitude, longitude) {
-    var query = getYql([latitude, longitude].join(','));
+  var forecastForLocation = function(latitude, longitude, units) {
+    var query = YQL.queryFor('weather', [latitude, longitude].join(','), ['*'], units);
 
     return $http.get(forecastUrl, { params: { q: query, format: 'json' } })
       .then(function(response) {

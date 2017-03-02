@@ -26,7 +26,9 @@ App.controller('ApplicationController', function($scope) {
  * services.
  */
 App.controller('WeatherWidgetController', function($scope, PlaceFinder, Weather, Geolocation, DEFAULT_LOCATION) {
+  var temperatureUnits = ['c', 'f'];
   this.isPopupOen = false;
+  this.displayUnit = 'f';
 
   /**
    * initializer method.
@@ -34,10 +36,7 @@ App.controller('WeatherWidgetController', function($scope, PlaceFinder, Weather,
    * @return {void}
    */
   this.init = function() {
-    Weather.forecastFor(DEFAULT_LOCATION).then(function(forecast) {
-      $scope.forecast = forecast;
-      $scope.$emit('loading:toggle');
-    });
+    this.forecastForDefaultLocation();
   };
 
   /**
@@ -46,6 +45,24 @@ App.controller('WeatherWidgetController', function($scope, PlaceFinder, Weather,
    */
   this.togglePopup = function() {
     this.isPopupOpen = !this.isPopupOpen;
+  };
+
+  /**
+   * toggle the units currently displayed (between celcius or Fahrenheit)
+   * @param  {string} newUnit the unit to switch to.
+   * @return {void}
+   */
+  this.toggleUnits = function(newUnit) {
+    this.displayUnit = newUnit;
+    this.forecastForDefaultLocation();
+  };
+
+  this.forecastForDefaultLocation = function() {
+    Weather.forecastFor(DEFAULT_LOCATION, this.displayUnit)
+      .then(function(forecast) {
+        $scope.forecast = forecast;
+        $scope.$emit('loading:toggle');
+      });
   };
 
   /**
